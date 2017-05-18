@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="client_id" content="532010835161-f2onj1u4f462k598c40b2i4orsju920b.apps.googleusercontent.com">
     <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
     <!--
       Notice the use of %PUBLIC_URL% in the tag above.
@@ -13,10 +14,12 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
     <title>React App</title>
   </head>
   <body>
     <div id="root"></div>
+    <div class="g-signin2" data-onsuccess="onSignIn"></div>
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
