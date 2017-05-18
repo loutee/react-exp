@@ -1,7 +1,10 @@
 import React from 'react'
 import { render } from 'react-dom'
+import { Login } from './components/Login'
+
+window.React = React
 
 render(
-    <h1>Hello, world!</h1>,
+    <Login />,
     document.getElementById('react-container')
 )
