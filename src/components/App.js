@@ -2,13 +2,6 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-function signOut() {
-  var auth2 = gapi.aut2.getAuthInstance();
-  auth2.signOut().then(function () {
-    console.log('User signed out.');
-  });
-}
-
 class App extends Component {
   render() {
     return (
@@ -21,11 +14,6 @@ class App extends Component {
           To get started, sign in.
         </p>
         <div className="g-signin2" data-onsuccess="onSignIn"></div>
-
-        <p className="App-intro">
-          Sign out here
-        </p>
-        <a href="#" onclick={signOut()}>Sign out</a>
       </div>
     );
   }
