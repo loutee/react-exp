@@ -69,9 +69,8 @@ export default class App extends Component {
                         logout()
                       }}
                       className="navbar-brand">Logout</button>
-                    : <span>
-                        <Link to="/login" className="navbar-brand">Login</Link>
-                      </span>}
+                    : <div></div>
+                  }
                 </li>
               </ul>
             </div>
