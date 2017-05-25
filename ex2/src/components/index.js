@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
 import 'bootstrap/dist/css/bootstrap.css'
 import { Route, BrowserRouter, Link, Redirect, Switch } from 'react-router-dom'
-import Home from './Home'
 import Login from './Login'
-import ReactDOM from 'react-dom'
-import registerServiceWorker from '../registerServiceWorker.js'
+import Dashboard from './protected/Dashboard'
+import { logout } from '../helpers/authentication'
 import { firebaseAuth } from '../config/constants'
 
 function PrivateRoute ({component: Component, authed, ...rest}) {
@@ -34,7 +33,7 @@ export default class App extends Component {
     authed: false,
     loading: true,
   }
-  componentDidMount () {
+  componentDidMount() {
     this.removeListener = firebaseAuth().onAuthStateChanged((user) => {
       if (user) {
         this.setState({
@@ -49,7 +48,7 @@ export default class App extends Component {
       }
     })
   }
-  componentWillUnmount () {
+  componentWillUnmount() {
     this.removeListener()
   }
 	render() {
@@ -63,7 +62,16 @@ export default class App extends Component {
               </div>
               <ul className="nav navbar-nav pull-right">
                 <li>
-                  <Link to="/" className="navbar-brand">Home</Link>
+                  {this.state.authed
+                    ? <button
+                      style={{border: 'none', background: 'transparent'}}
+                      onClick={() => {
+                        logout()
+                      }}
+                      className="navbar-brand">Logout</button>
+                    : <span>
+                        <Link to="/login" className="navbar-brand">Login</Link>
+                      </span>}
                 </li>
               </ul>
             </div>
@@ -71,8 +79,11 @@ export default class App extends Component {
           <div className="container">
             <div className="row">
               <Switch>
-                <Route path='/' exact component={Home} />
+                <Route exact path='/' render={() => (
+                  <Redirect to="/dashboard"/>
+                )}/>
                 <PublicRoute authed={this.state.authed} path='/login' component={Login} />
+                <PrivateRoute authed={this.state.authed} path='/dashboard' component={Dashboard} />
                 <Route render={() => <h3>No Match</h3>} />
               </Switch>
             </div>
