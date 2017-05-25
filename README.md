@@ -1,6 +1,5 @@
-# Experimental React Apps
+# Experimental React App
+  Uses Firebase email and password login feature.
+  Produced from following code from https://github.com/tylermcginnis/react-router-firebase-auth
 
-## ex1
-  React app with Google sign in (No redirect uri)
-
-## ex2
+#### Note: Firebase API constants in /config should be proveded by your own variables within a json file.
