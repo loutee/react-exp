@@ -1,6 +1,19 @@
 import React, { Component } from 'react';
+import Firebase from 'firebase';
 import logo from './logo.svg';
 import './App.css';
+
+var ref = new Firebase("https://test-project-bd213.firebaseio.com");
+ref.authWithPassword({
+  email    : "foo@bar.com",
+  password : "foobar"
+}, function(error, authData) {
+  if (error) {
+    console.log("Login Failed!", error);
+  } else {
+    console.log("Authenticated successfully with payload:", authData);
+  }
+});
 
 class App extends Component {
   render() {
