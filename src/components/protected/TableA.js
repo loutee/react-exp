@@ -1,5 +1,11 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import { db } from '../../config/constants'
+
+function separate(arr) {
+  arr = arr.join(', ')
+  return arr
+}
 
 export default class TableA extends Component {
 
@@ -23,7 +29,8 @@ export default class TableA extends Component {
   render() {
     return (
       <div>
-        <button className="btn btn-default">Add Item</button>
+        <Link to="/add-a" className="btn btn-default">Add A Item</Link>
+        <h1>A Items</h1>
         <table className="table table-striped">
           <thead>
             <tr>
@@ -44,10 +51,10 @@ export default class TableA extends Component {
                     {aItem.name}
                   </td>
                   <td>
-                    {aItem.vitamins}
+                    {separate(aItem.vitamins)}
                   </td>
                   <td>
-                    {aItem.recipes}
+                    {separate(aItem.recipes)}
                   </td>
                 </tr>
             )}
