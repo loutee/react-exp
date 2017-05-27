@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 import { Route, BrowserRouter, Link, Redirect, Switch } from 'react-router-dom'
 import Login from './Login'
 import Dashboard from './protected/Dashboard'
+import TableA from './protected/TableA'
 import { logout } from '../helpers/authentication'
 import { firebaseAuth } from '../config/constants'
 
@@ -63,6 +64,12 @@ export default class App extends Component {
               <ul className="nav navbar-nav pull-right">
                 <li>
                   {this.state.authed
+                    ? <Link to="/table-a" className="navbar-brand">Table A</Link>
+                    : <div></div>
+                  }
+                </li>
+                <li>
+                  {this.state.authed
                     ? <button
                       style={{border: 'none', background: 'transparent'}}
                       onClick={() => {
@@ -83,6 +90,7 @@ export default class App extends Component {
                 )}/>
                 <PublicRoute authed={this.state.authed} path='/login' component={Login} />
                 <PrivateRoute authed={this.state.authed} path='/dashboard' component={Dashboard} />
+                <PrivateRoute authed={this.state.authed} path='/table-a' component={TableA} />
                 <Route render={() => <h3>No Match</h3>} />
               </Switch>
             </div>
