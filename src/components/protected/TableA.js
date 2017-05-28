@@ -16,13 +16,14 @@ export default class TableA extends Component {
 
   componentWillMount() {
     let aitemsRef = db.ref('a-items')
-    aitemsRef.on('child_added', snapshot => {
-      let aItem = { id: snapshot.key,
-                    name: snapshot.child('name').val(),
-                    vitamins: snapshot.child('vitamins').val(),
-                    recipes: snapshot.child('recipes').val()
-                  };
-      this.setState({items: [aItem].concat(this.state.items)});
+    aitemsRef.on('child_added', snap=> {
+			const previousItem = this.state.items
+      previousItem.push({ id: snap.key,
+														name: snap.child('name').val(),
+														vitamins: snap.child('vitamins').val(),
+														recipes: snap.child('recipes').val()
+												 });
+      this.setState({items: previousItem});
     })
   }
 
@@ -41,8 +42,7 @@ export default class TableA extends Component {
             </tr>
           </thead>
           <tbody>
-            {this.state.items.map(
-                aItem =>
+            {this.state.items.map(aItem =>
                 <tr key={aItem.id}>
                   <td>
                     {aItem.id}
