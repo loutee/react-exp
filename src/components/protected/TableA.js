@@ -10,9 +10,12 @@ function separate(arr) {
 }
 
 function deleteItem(id) {
-  db.ref('a-items').child(id).remove()
-  //Temporary fix for updating on removal
-  window.location.reload()
+  var result = window.confirm('Delete?')
+  if (result) {
+    db.ref('a-items').child(id).remove()
+    //Temporary fix for updating on removal
+    window.location.reload()
+  }
 }
 
 export default class TableA extends Component {
