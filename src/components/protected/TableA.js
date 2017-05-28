@@ -9,6 +9,12 @@ function separate(arr) {
   return arr
 }
 
+function deleteItem(id) {
+  db.ref('a-items').child(id).remove()
+  //Temporary fix for updating on removal
+  window.location.reload()
+}
+
 export default class TableA extends Component {
 
   constructor(props) {
@@ -57,6 +63,9 @@ export default class TableA extends Component {
                   </td>
                   <td>
                     {separate(aItem.recipes)}
+                  </td>
+                  <td>
+                    <button onClick={() => deleteItem(aItem.id)} className="btn btn-default btn-small">Delete</button>
                   </td>
                 </tr>
             )}

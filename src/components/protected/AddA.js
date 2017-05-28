@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import { db } from '../../config/constants'
 
 function writeItemData(id, name, vitamins, recipes) {
@@ -11,9 +11,11 @@ function writeItemData(id, name, vitamins, recipes) {
 }
 
 export default class AddA extends Component {
+
   constructor(props) {
     super(props)
     this.write = this.write.bind(this)
+    this.state = {redirect: false}
   }
 
   write() {
@@ -23,10 +25,14 @@ export default class AddA extends Component {
       this.refs.vitamins.value.split(','),
       this.refs.recipes.value.split(',')
     )
+    this.setState({redirect: true});
   }
 
 
   render() {
+    if (this.state.redirect) {
+      return <Redirect push to="/table-a" />
+    }
     return (
       <div className="col-sm-6 col-sm-offset-3">
 				<form>
