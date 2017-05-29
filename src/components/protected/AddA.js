@@ -47,10 +47,12 @@ export default class AddA extends Component {
     }
     return (
       <div className="col-sm-6 col-sm-offset-3">
+        <h1>Add/Edit Item</h1>
         <button className="btn btn-default btn-small" onClick={() =>
         retrieveItemData()}>Retrieve ID Data</button>
+        <br />
+        <br />
 				<form>
-          <h1>Add/Edit Item</h1>
           <div className="form-group">
             <label>ID</label>
             <input id="id" ref="id" className="form-control" placeholder="ID"/>

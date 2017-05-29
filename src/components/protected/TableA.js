@@ -41,7 +41,7 @@ export default class TableA extends Component {
   render() {
     return (
       <div>
-        <Link to="/add-a" className="btn btn-default">Add A Item</Link>
+        <Link to="/add-a" className="btn btn-default btn-lg">Add A Item</Link>
         <h1>A Items</h1>
         <table className="table table-striped">
           <thead>
