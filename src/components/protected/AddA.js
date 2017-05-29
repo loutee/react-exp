@@ -10,6 +10,18 @@ function writeItemData(id, name, vitamins, recipes) {
   })
 }
 
+function retrieveItemData() {
+  var id = window.document.getElementById("id").value
+  if (id.length !== 0) {
+    var itemRef = db.ref('a-items').child(id)
+    itemRef.on('value', snap => {
+      window.document.getElementById("name").value = snap.child('name').val()
+      window.document.getElementById("vitamins").value = snap.child('vitamins').val()
+      window.document.getElementById("recipes").value = snap.child('recipes').val()
+    })
+  }
+}
+
 export default class AddA extends Component {
 
   constructor(props) {
@@ -25,7 +37,7 @@ export default class AddA extends Component {
       this.refs.vitamins.value.split(','),
       this.refs.recipes.value.split(',')
     )
-    this.setState({redirect: true});
+    this.setState({redirect: true})
   }
 
 
@@ -35,8 +47,10 @@ export default class AddA extends Component {
     }
     return (
       <div className="col-sm-6 col-sm-offset-3">
+        <button className="btn btn-default btn-small" onClick={() =>
+        retrieveItemData()}>Retrieve ID Data</button>
 				<form>
-          <h1>Add Item</h1>
+          <h1>Add/Edit Item</h1>
           <div className="form-group">
             <label>ID</label>
             <input id="id" ref="id" className="form-control" placeholder="ID"/>
@@ -57,7 +71,7 @@ export default class AddA extends Component {
           &nbsp; &nbsp; &nbsp;
           <button type="submit" className="btn btn-default btn-lg" onClick={
             this.write
-          }>Add Item</button>
+          }>Add/Update Item</button>
         </form>
       </div>
     )

@@ -30,9 +30,9 @@ export default class TableA extends Component {
     aitemsRef.on('child_added', snap => {
 			const previousItem = this.state.items
       previousItem.push({ id: snap.key,
-														name: snap.child('name').val(),
-														vitamins: snap.child('vitamins').val(),
-														recipes: snap.child('recipes').val()
+                          name: snap.child('name').val(),
+                          vitamins: snap.child('vitamins').val(),
+                          recipes: snap.child('recipes').val()
                        });
       this.setState({items: previousItem});
     })
