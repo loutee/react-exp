@@ -10,7 +10,7 @@ function separate(arr) {
 }
 
 function deleteItem(id) {
-  var result = window.confirm('Delete?')
+  var result = window.confirm('Delete ' + id + '?')
   if (result) {
     db.ref('a-items').child(id).remove()
     //Temporary fix for updating on removal
@@ -41,7 +41,7 @@ export default class TableA extends Component {
   render() {
     return (
       <div>
-        <Link to="/add-a" className="btn btn-default btn-lg">Add A Item</Link>
+        <Link to="/add-a" className="btn btn-default btn-lg">Add/Edit Item</Link>
         <h1>A Items</h1>
         <table className="table table-striped">
           <thead>
