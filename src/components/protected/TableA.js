@@ -13,8 +13,8 @@ function deleteItem(id) {
   var result = window.confirm('Delete ' + id + '?')
   if (result) {
     db.ref('a-items').child(id).remove()
-    //Temporary fix for updating on removal
-    window.location.reload()
+    //Temporary fix for updating on removal (404 on deployment)
+    //window.location.reload()
   }
 }
 
