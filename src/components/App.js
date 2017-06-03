@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import 'bootstrap/dist/css/bootstrap.css'
-import { Route, BrowserRouter, Link, Redirect, Switch } from 'react-router-dom'
+import { Route, HashRouter, Link, Redirect, Switch } from 'react-router-dom'
 import Login from './Login'
 import Dashboard from './protected/Dashboard'
 import TableA from './protected/TableA'
@@ -55,7 +55,7 @@ export default class App extends Component {
   }
 	render() {
     return this.state.loading === true ? <h1>Loading</h1> : (
-      <BrowserRouter>
+      <HashRouter>
         <div>
           <nav className="navbar navbar-default navbar-static-top">
             <div className="container">
@@ -98,7 +98,7 @@ export default class App extends Component {
             </div>
           </div>
         </div>
-      </BrowserRouter>
+      </HashRouter>
     );
   }
 }
